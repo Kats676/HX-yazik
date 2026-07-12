@@ -45,14 +45,33 @@ openBtn.addEventListener('click', () => {
     }
 });
 
-window.addEventListener('keydown', (e) => {
-    if (e.code === 'Space' && engineActive && player.isGrounded) {
-        e.preventDefault();
+// ФУНКЦИЯ ПРЫЖКА ДЛЯ IPAD И ПК
+function triggerJump() {
+    if (engineActive && player.isGrounded) {
         player.vy = player.jumpForce;
         player.isGrounded = false;
         statusIndicator.textContent = "JUMPING";
         statusIndicator.style.color = "#ffb86c";
     }
+}
+
+// Прыжок для обычных компьютеров (по пробелу)
+window.addEventListener('keydown', (e) => {
+    if (e.code === 'Space') {
+        if (engineActive) e.preventDefault(); 
+        triggerJump();
+    }
+});
+
+// Прыжок для iPad и iPhone (по нажатию пальцем на игровой экран)
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault(); 
+    triggerJump();
+}, { passive: false });
+
+// Резервный клик мышкой или стилусом на iPad
+canvas.addEventListener('mousedown', () => {
+    triggerJump();
 });
 
 function startLoop() {
@@ -161,6 +180,13 @@ function updatePhysicsAndGraphics() {
     ctx.moveTo(0, floorY);
     ctx.lineTo(canvas.width, floorY);
     ctx.stroke();
+
+    // Визуальная подсказка управления для iPad и ПК
+    if (engineActive) {
+        ctx.fillStyle = 'rgba(80, 250, 123, 0.6)';
+        ctx.font = '14px monospace';
+        ctx.fillText('УПРАВЛЕНИЕ: НАЖМИТЕ НА ЭКРАН ИГРЫ ИЛИ ПРОБЕЛ ДЛЯ ПРЫЖКА', 20, 30);
+    }
 
     if (!engineActive) return;
 
