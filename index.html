@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HulicXous Official IDE & Academy</title>
+    <!-- Подключаем внешние стили -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Задний анимированный фон -->
+    <div class="bg-grid"></div>
+
+    <header>
+        <div class="logo-area">
+            <span class="logo-badge">HX</span>
+            <h1>Язык HX HulicXous</h1>
+        </div>
+        <p class="subtitle">Мы научим вас учиться на языке HulicXous!</p>
+    </header>
+
+    <main>
+        <div class="welcome-card">
+            <p class="cta-text">Наш язык прямо в браузере!</p>
+            <button class="btn-neon" id="openConsoleBtn">
+                <span class="btn-text">Открыть консоль</span>
+                <span class="btn-glow"></span>
+            </button>
+        </div>
+
+        <!-- Огромный контейнер среды разработки (IDE) -->
+        <div class="console-container" id="consoleWidget">
+            <div class="console-header">
+                <div class="console-dots">
+                    <div class="dot dot-red"></div>
+                    <div class="dot dot-yellow"></div>
+                    <div class="dot dot-green"></div>
+                </div>
+                <div class="console-title">HulicXous OS Terminal Engine v4.0</div>
+                <div class="console-status">STATUS: <span id="statusIndicator">READY</span></div>
+            </div>
+            
+            <div class="console-body">
+                <!-- Графический игровой экран с поддержкой физики -->
+                <div class="canvas-wrapper">
+                    <canvas id="gameCanvas" width="800" height="250"></canvas>
+                    <div class="canvas-hud" id="gameHud">
+                        <span class="hud-score">SCORE: <span id="scoreVal">0</span></span>
+                        <span class="hud-fps">FPS: 60</span>
+                    </div>
+                </div>
+                
+                <!-- Мощный лог терминала -->
+                <div class="output-wrapper">
+                    <div class="output" id="consoleOutput">Добро пожаловать в экосистему HX HulicXous!
+[Система]: Все модули ядра успешно скомпилированы.
+[Бот-Урок]: Для активации пошагового курса из 12 глав введите команду: help
+----------------------------------------------------------------------------------</div>
+                </div>
+                
+                <!-- Зона ввода кода -->
+                <div class="input-line">
+                    <span class="prompt">HX_CORE&gt;</span>
+                    <input type="text" class="code-input" id="consoleInput" placeholder="Пишите код на HulicXous или управляющие команды..." autocomplete="off">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 HulicXous ecosystem. Все права защищены. Разработано на базе HX Engine.</p>
+    </footer>
+
+    <!-- Подключаем огромный скрипт логики -->
+    <script src="script.js"></script>
+</body>
+</html>
